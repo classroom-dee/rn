@@ -1,22 +1,46 @@
+import { StyleSheet } from "react-native";
+
 const theme = {
-    colors: {
-      textPrimary: '#24292e',
-      textSecondary: '#586069',
-      primary: '#0366d6',
-      navBarBG: '#24292e',
-      textWhite: 'white'
+  colors: {
+    textPrimary: '#24292e',
+    textSecondary: '#586069',
+    primary: '#0366d6',
+    navBarBG: '#24292e',
+    textWhite: 'white'
+  },
+  fontSizes: {
+    body: 14,
+    subheading: 16,
+  },
+  fonts: {
+    main: 'System',
+  },
+  fontWeights: {
+    normal: '400',
+    bold: '700',
+  },
+  tagsStyle: StyleSheet.create({
+    techStack: {
+      backgroundColor: 'skyblue', 
+      paddingVertical: 5, 
+      paddingHorizontal: 5, 
+      borderRadius: 5, 
+      alignSelf: 'flex-start'
+    }
+  }),
+  repoItemStyle: StyleSheet.create({
+    avatar: {
+      width: 50,
+      height: 50
     },
-    fontSizes: {
-      body: 14,
-      subheading: 16,
+    itemBackground: {
+      backgroundColor: 'white',
+      padding: 5
     },
-    fonts: {
-      main: 'System',
+    itemFont: {
+      color: 'black'
     },
-    fontWeights: {
-      normal: '400',
-      bold: '700',
-    },
-  };
+  })
+};
   
-  export default theme;
+export default theme;

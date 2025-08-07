@@ -10,35 +10,39 @@ import { FlatCompat } from "@eslint/eslintrc";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const compat = new FlatCompat({
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all
+  baseDirectory: __dirname,
+  recommendedConfig: js.configs.recommended,
+  allConfig: js.configs.all
 });
 
 export default defineConfig([{
-    extends: compat.extends("eslint:recommended", "plugin:react/recommended"),
+  extends: compat.extends("eslint:recommended", "plugin:react/recommended"),
 
-    plugins: {
-        react,
-        "react-native": reactNative,
+  plugins: {
+    react,
+    "react-native": reactNative,
+  },
+
+  languageOptions: {
+    globals: {
+      ...reactNative.environments["react-native"]["react-native"],
     },
 
-    languageOptions: {
-        globals: {
-            ...reactNative.environments["react-native"]["react-native"],
-        },
+    parser: babelParser,
+  },
 
-        parser: babelParser,
+  settings: {
+    react: {
+      version: "detect",
     },
+  },
 
-    settings: {
-        react: {
-            version: "detect",
-        },
-    },
+  rules: {
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "indent": ['warn', 2],
+  },
 
-    rules: {
-        "react/prop-types": "off",
-        "react/react-in-jsx-scope": "off",
-    },
+  files: ['**/*.js', '**/*.jsx', '**/*.mjs'],
+    
 }]);
