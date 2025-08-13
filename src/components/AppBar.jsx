@@ -28,6 +28,7 @@ const AppBar = () => {
         contentContainerStyle={styles.scollview} 
         showsHorizontalScrollIndicator={false}
         horizontal
+        style={{ paddingBottom: 5 }}
       >
         <AppBarTab style={styles.tabs} title="Repositories" to="/" />
         <AppBarTab style={styles.tabs} title="Sign in" to="/signin" />

@@ -8,3 +8,5 @@
 - [Ex 10.4](https://github.com/classroom-dee/rn/tree/10.4)
 - [Ex 10.5](https://github.com/classroom-dee/rn/tree/10.5)
 - [Ex 10.6](https://github.com/classroom-dee/rn/tree/10.6)
+- [Ex 10.7](https://github.com/classroom-dee/rn/tree/10.7)
+- [Ex 10.8](https://github.com/classroom-dee/rn/tree/10.8)
