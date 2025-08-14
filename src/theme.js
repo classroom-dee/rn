@@ -40,6 +40,16 @@ const theme = {
     itemFont: {
       color: 'black'
     },
+  }),
+  formStyle: StyleSheet.create({
+    textInputNormal: {
+      backgroundColor: 'white',
+      padding: 5
+    },
+    textInputError: {
+      backgroundColor: 'salmon',
+      padding: 5
+    }
   })
 };
   
