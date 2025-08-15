@@ -1,7 +1,8 @@
-import { Text, View, TextInput, Pressable } from "react-native";
+import { View, TextInput, Pressable } from "react-native";
 import theme from "../theme";
 import { useFormik } from "formik";
 import validationSchema from "../schemas";
+import ThemedText from './ThemedText'
 
 const initialValues = {
   id: '',
@@ -29,7 +30,7 @@ const SignIn = ({ onSubmit }) => {
         
       />
       {formik.touched.id && formik.errors.id && (
-        <Text style={{ color: 'red' }}>{formik.errors.id}</Text>
+        <ThemedText style={{ color: 'red' }}>{formik.errors.id}</ThemedText>
       )}
       <TextInput
         style={
@@ -43,14 +44,14 @@ const SignIn = ({ onSubmit }) => {
         secureTextEntry
       />
       {formik.touched.pw && formik.errors.pw && (
-        <Text style={{ color: 'red' }}>{formik.errors.pw}</Text>
+        <ThemedText style={{ color: 'red' }}>{formik.errors.pw}</ThemedText>
       )}
       <Pressable 
         onPress={formik.handleSubmit}
         style={{ backgroundColor: theme.colors.primary, alignItems: "center", padding: 5 }}
         disabled={ (formik.errors.id || formik.errors.pw) ? true : false }
       >
-        <Text style={{ color: theme.colors.textWhite }}>Sign in</Text>
+        <ThemedText style={{ color: theme.colors.textWhite }}>Sign in</ThemedText>
       </Pressable>
     </View>
   )

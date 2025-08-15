@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 const theme = {
   colors: {
@@ -12,9 +12,11 @@ const theme = {
     body: 14,
     subheading: 16,
   },
-  fonts: {
-    main: 'System',
-  },
+  fonts: Platform.select({
+    default: 'System',
+    android: 'Roboto',
+    ios: 'Arial'
+  }),
   fontWeights: {
     normal: '400',
     bold: '700',

@@ -1,14 +1,15 @@
-import { Pressable, Text } from "react-native";
+import { Pressable } from "react-native";
 import { Link } from 'react-router-native';
+import ThemedText from "./ThemedText";
 
 const AppBarTab = ({ style, title, to }) => {
 
   return (
     <Pressable>
       <Link to={to}>
-        <Text style={style}>
+        <ThemedText style={style}>
           {title}
-        </Text>
+        </ThemedText>
       </Link>
     </Pressable>
   )

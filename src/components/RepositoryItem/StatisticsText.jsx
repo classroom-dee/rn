@@ -1,13 +1,14 @@
-import { Text, View } from "react-native"
+import { View } from "react-native"
 import theme from "../../theme"
+import ThemedText from "../ThemedText"
 
 const StatisticsText = ({ name, value }) => {
   return (
     <View style={{ alignItems: "center" }}>
-      <Text style={{ fontWeight: theme.fontWeights.bold, color: theme.colors.textPrimary }}>
+      <ThemedText style={{ fontWeight: theme.fontWeights.bold, color: theme.colors.textPrimary }}>
         {value >= 1000 ? `${Math.round(value / 100) / 10}k` : value}
-      </Text>
-      <Text style={{ color: theme.colors.textSecondary}}>{name}</Text>
+      </ThemedText>
+      <ThemedText style={{ color: theme.colors.textSecondary}}>{name}</ThemedText>
     </View>
   )
 }

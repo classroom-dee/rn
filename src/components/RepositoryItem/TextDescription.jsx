@@ -1,15 +1,16 @@
-import { View, Text } from "react-native"
+import { View } from "react-native"
 import theme from "../../theme"
+import ThemedText from "../ThemedText"
 
 const TextDescription = ({ item }) => {
 
   return (
     <View style={{ marginLeft: 5, marginBottom: 5, rowGap: 5 }}>
-      <Text style={{ fontWeight: theme.fontWeights.bold }}>{item.id.replace(".", "/")}</Text>
-      <Text style={{ color: theme.colors.textSecondary}}>{item.description}</Text>
+      <ThemedText style={{ fontWeight: theme.fontWeights.bold }}>{item.id.replace(".", "/")}</ThemedText>
+      <ThemedText style={{ color: theme.colors.textSecondary}}>{item.description}</ThemedText>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <View style={theme.tagsStyle.techStack}>
-          <Text style={{ color: theme.colors.textWhite }}>{item.language}</Text>
+          <ThemedText style={{ color: theme.colors.textWhite }}>{item.language}</ThemedText>
         </View>
       </View>
     </View>

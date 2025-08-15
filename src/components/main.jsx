@@ -1,8 +1,9 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Platform } from 'react-native';
 import RepositoryList from './RepositoryList';
 import AppBar from './AppBar';
 import { Route, Routes, Navigate } from 'react-router-native';
 import SignIn from './SignIn';
+import ThemedText from './ThemedText';
 
 const styles = StyleSheet.create({
   container: {
@@ -23,6 +24,9 @@ const Main = () => {
         <Route path="/signin" element={<SignIn onSubmit={onSubmit} />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <View>
+        <ThemedText style={{ color: 'white', paddingBottom: 5, paddingLeft: 30 }}>Running on {Platform.OS}</ThemedText>
+      </View>
     </View>
   );
 };
