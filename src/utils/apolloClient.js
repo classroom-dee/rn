@@ -1,8 +1,10 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
+import Constants from 'expo-constants'
 
 const createApolloClient = () => {
+  const env = Constants.expoConfig.extra.env
   return new ApolloClient({
-    uri: 'http://192.168.0.100:4000/graphql',
+    uri: env === "dev" ? Constants.expoConfig.extra.apolloDev : Constants.expoConfig.extra.apolloProd,
     cache: new InMemoryCache(),
   });
 };

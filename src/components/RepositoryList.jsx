@@ -33,7 +33,7 @@ const RepositoryList = () => {
 
   // Get the nodes from the edges array
   const repositoryNodes = data
-    ? data.edges.map(edge => edge.node)
+    ? data.repositories.edges.map(edge => edge.node)
     : [];
 
   return (
