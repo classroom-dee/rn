@@ -8,5 +8,6 @@
         "source.fixAll.eslint": "always",
         "source.fixAll": "always"
 
-    }
+    },
+    "postman.settings.dotenv-detection-notification-visibility": false
 }
