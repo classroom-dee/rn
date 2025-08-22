@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import validationSchema from "../schemas";
 import ThemedText from './ThemedText'
 import useSignIn from "../hooks/useSignIn";
+import AuthStorage from "../utils/authStorage";
 
 const initialValues = {
   username: '',
@@ -15,9 +16,15 @@ const SignIn = () => {
   
   const onSubmit = async ({ username, password }) => {
     try {
-      console.log(`uname: ${username} pw: ${password}`)
       const { data } = await signIn({ username, password })
-      console.log(data)
+      const userStore = new AuthStorage(`auth-${data.user.username}`)
+      await userStore.setAccessToken({
+        accessToken: data.accessToken, 
+        expiresAt: data.expiresAt,
+        username: data.user.username,
+        id: data.user.id
+      })
+      // propagate to main.js?
     } catch (e) {
       console.log(e);
     }
