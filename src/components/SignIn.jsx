@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import validationSchema from "../schemas";
 import ThemedText from './ThemedText'
 import useSignIn from "../hooks/useSignIn";
-import AuthStorage from "../utils/authStorage";
+import { useNavigate } from "react-router-native";
 
 const initialValues = {
   username: '',
@@ -13,20 +13,14 @@ const initialValues = {
 
 const SignIn = () => {
   const [signIn] = useSignIn();
+  const nav = useNavigate()
   
   const onSubmit = async ({ username, password }) => {
     try {
-      const { data } = await signIn({ username, password })
-      const userStore = new AuthStorage(`auth-${data.user.username}`)
-      await userStore.setAccessToken({
-        accessToken: data.accessToken, 
-        expiresAt: data.expiresAt,
-        username: data.user.username,
-        id: data.user.id
-      })
-      // propagate to main.js?
+      const user = await signIn({ username, password })
+      nav('/')
     } catch (e) {
-      console.log(e);
+      console.log(`on login submit error: ${e}`);
     }
   }
 

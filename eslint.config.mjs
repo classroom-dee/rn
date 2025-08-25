@@ -17,7 +17,6 @@ const compat = new FlatCompat({
 
 export default defineConfig([{
   extends: compat.extends("eslint:recommended", "plugin:react/recommended"),
-
   plugins: {
     react,
     "react-native": reactNative,
@@ -26,6 +25,7 @@ export default defineConfig([{
   languageOptions: {
     globals: {
       ...reactNative.environments["react-native"]["react-native"],
+      console: "readonly",
     },
 
     parser: babelParser,
@@ -41,6 +41,7 @@ export default defineConfig([{
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
     "indent": ['warn', 2],
+    "no-console": "warn"
   },
 
   files: ['**/*.js', '**/*.jsx', '**/*.mjs'],
