@@ -17,3 +17,5 @@
 - [Ex 10.13](https://github.com/classroom-dee/rn/tree/10.13)
 - [Ex 10.14](https://github.com/classroom-dee/rn/tree/10.14)
 - [Ex 10.15](https://github.com/classroom-dee/rn/tree/10.15)
+- [Ex 10.15](https://github.com/classroom-dee/rn/tree/10.15)
+- [Ex 10.16](https://github.com/classroom-dee/rn/tree/10.16)

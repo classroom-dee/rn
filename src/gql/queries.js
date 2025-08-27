@@ -16,6 +16,15 @@ export const AUTHENTICATE = gql`
   }
 `
 
+export const ME = gql`
+  query ME {
+    me {
+      id
+      username
+    }
+  }
+`
+
 export const GET_REPOS = gql`
   query GET_REPOS {
     repositories {

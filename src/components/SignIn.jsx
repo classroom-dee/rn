@@ -11,19 +11,23 @@ const initialValues = {
   password: ''
 }
 
-const SignIn = () => {
-  const [signIn] = useSignIn();
+const SignIn = ({ handleSubmit }) => {
+  const [signIn, result] = useSignIn();
   const nav = useNavigate()
   
   const onSubmit = async ({ username, password }) => {
     try {
       const user = await signIn({ username, password })
+      handleSubmit({
+        accessToken: user.accessToken,
+        expiresAt: user.expiresAt,
+      })
       nav('/')
     } catch (e) {
       console.log(`on login submit error: ${e}`);
     }
   }
-
+  
   const formik = useFormik({
     initialValues,
     validationSchema,

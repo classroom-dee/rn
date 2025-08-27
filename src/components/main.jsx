@@ -4,6 +4,9 @@ import AppBar from './AppBar';
 import { Route, Routes, Navigate } from 'react-router-native';
 import SignIn from './SignIn';
 import ThemedText from './ThemedText';
+import { useState } from 'react';
+import useAuthStorage from '../hooks/useAuthStorage';
+import SignOut from './SignOut';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,12 +16,20 @@ const styles = StyleSheet.create({
 });
 
 const Main = () => {
+  const [user, setUser] = useState(null);
+
+  const authStorage = useAuthStorage();
+
+  const handleSubmit = async ({ accessToken, expiresAt }) => {
+    setUser({ ...await authStorage.getAccessToken(), accessToken, expiresAt })
+  }
   return (
     <View style={styles.container}>
       <AppBar />
       <Routes>
         <Route path="/" element={<RepositoryList />} />
-        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signin" element={<SignIn handleSubmit={handleSubmit}/>} />
+        <Route path="/signout" element={<SignOut />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <View>

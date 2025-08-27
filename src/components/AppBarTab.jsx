@@ -3,7 +3,6 @@ import { Link } from 'react-router-native';
 import ThemedText from "./ThemedText";
 
 const AppBarTab = ({ style, title, to }) => {
-
   return (
     <Pressable>
       <Link to={to}>

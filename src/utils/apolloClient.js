@@ -15,7 +15,7 @@ const createApolloClient = (authStorage) => {
       return {
         headers: {
           ...headers,
-          authorization: accessToken ? `Bearer ${accessToken}` : '',
+          authorization: accessToken ? `Bearer ${accessToken.accessToken}` : '',
         },
       };
     } catch (e) {
@@ -25,6 +25,7 @@ const createApolloClient = (authStorage) => {
       };
     }
   });
+
   return new ApolloClient({
     link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
