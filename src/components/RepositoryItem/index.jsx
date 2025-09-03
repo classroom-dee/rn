@@ -6,7 +6,7 @@ import DescriptionArea from "./DescriptionArea"
 const RepositoryItem = ({ item }) => {
 
   return (
-    <View style={theme.repoItemStyle.itemBackground}>
+    <View testID="repositoryItem" style={theme.repoItemStyle.itemBackground}>
       <DescriptionArea item={item}/>
       <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
         <StatisticsText name="Stars" value={item.stargazersCount}/>
