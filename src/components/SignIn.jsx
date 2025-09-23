@@ -3,37 +3,19 @@ import theme from "../theme";
 import { useFormik } from "formik";
 import validationSchema from "../schemas";
 import ThemedText from './ThemedText'
-import useSignIn from "../hooks/useSignIn";
-import { useNavigate } from "react-router-native";
 
 const initialValues = {
   username: '',
   password: ''
 }
 
-const SignIn = ({ handleSubmit }) => {
-  const [signIn, result] = useSignIn();
-  const nav = useNavigate()
-  
-  const onSubmit = async ({ username, password }) => {
-    try {
-      const user = await signIn({ username, password })
-      handleSubmit({
-        accessToken: user.accessToken,
-        expiresAt: user.expiresAt,
-      })
-      nav('/')
-    } catch (e) {
-      console.log(`on login submit error: ${e}`);
-    }
-  }
+const SignIn = ({ onSubmit }) => {
   
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit
   })
-
 
   return (
     <View style={{ rowGap: 5 }}>
