@@ -1,5 +1,24 @@
 import { gql } from "@apollo/client";
 
+
+export const GET_ONE_REPO = gql`
+  query GET_ONE_REPO($repositoryId: ID!) {
+    repository(id: $repositoryId) {
+      id,
+      stargazersCount,
+      forksCount,
+      reviewCount,
+      ratingAverage,
+      ownerAvatarUrl,
+      description,
+      language,
+      fullName,
+      url
+    }
+  }
+`
+
+
 export const AUTHENTICATE = gql`
   mutation AUTHENTICATE($username: String!, $password: String!) {
     authenticate(credentials:  {

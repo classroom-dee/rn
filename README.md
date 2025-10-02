@@ -1,6 +1,6 @@
 ## React Native
 ### Part 01
-- Note: Used SDK53 for Expo Go compat
+- Note: Upgraded to Expo SDK54 for Expo Go compat
 - Note: eslint config upgrade -> `npx @eslint/migrate-config .eslintrc.json`
 - [Ex 10.1](https://github.com/classroom-dee/rn/tree/10.1)
 - [Ex 10.2](https://github.com/classroom-dee/rn/tree/10.2)
@@ -21,3 +21,4 @@
 - [Ex 10.16](https://github.com/classroom-dee/rn/tree/10.16)
 - [Ex 10.17](https://github.com/classroom-dee/rn/tree/10.17)
 - [Ex 10.18](https://github.com/classroom-dee/rn/tree/10.18)
+- [Ex 10.19](https://github.com/classroom-dee/rn/tree/10.19)

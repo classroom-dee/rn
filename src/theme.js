@@ -42,6 +42,11 @@ const theme = {
     itemFont: {
       color: 'black'
     },
+    repoDetailStyle: {
+      backgroundColor: 'white',
+      padding: 5,
+      height: 'auto'
+    }
   }),
   formStyle: StyleSheet.create({
     textInputNormal: {
