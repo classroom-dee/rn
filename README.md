@@ -22,3 +22,4 @@
 - [Ex 10.17](https://github.com/classroom-dee/rn/tree/10.17)
 - [Ex 10.18](https://github.com/classroom-dee/rn/tree/10.18)
 - [Ex 10.19](https://github.com/classroom-dee/rn/tree/10.19)
+- [Ex 10.20](https://github.com/classroom-dee/rn/tree/10.20)
