@@ -41,15 +41,18 @@ const ItemSeparator = () => <View style={{ backgroundColor: '#F5F5F5', ...styles
 const RepositoryItem = () => {
 
   const { id } = useParams(); // reads :id from router
-  const { data, error, loading } = useQuery(GET_ONE_REPO, { variables: { repositoryId: id }});
+  const { data, error, loading } = useQuery(
+    GET_ONE_REPO, 
+    { variables: { repositoryId: id }, fetchPolicy: 'cache-and-network'},
+  );
 
   if (error) return <View><Text>Error: {error.message}</Text></View>
   if (loading) return <View><Text>Loading...</Text></View>
 
   const item = data.repository
-  const reviews = data.repository.reviews.edges.map(edge => edge.node)
+  const reviews = item.reviews.edges.map(edge => edge.node)
 
-  return (
+  return ( 
     <View testID="repositoryItem" style={theme.repoItemStyle.repoDetailStyle}>
       <DescriptionArea item={item}/>
       <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 10 }}>

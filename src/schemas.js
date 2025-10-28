@@ -17,4 +17,19 @@ const validationSchema = yup.object().shape({
     )
 });
 
+export const reviewFormSchema = yup.object().shape({
+  ownerName: yup
+    .string()
+    .required('Owner name is required'),
+  rating: yup
+    .number()
+    .min(0, "Must be at least 0")
+    .max(100, "Cannot exceed 100")
+    .required("Rating is required"),
+  repositoryName: yup
+    .string().required("Repository name is required"),
+  text: yup
+    .string().optional()
+})
+
 export default validationSchema

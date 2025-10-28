@@ -1,6 +1,33 @@
 import { gql } from "@apollo/client";
 
 
+export const CREATE_REVIEW = gql`
+  mutation CREATE_REVIEW($ownerName: String!, $repositoryName: String!, $rating: Int!, $text: String) {
+    createReview (
+      review: {
+        ownerName: $ownerName,
+        repositoryName: $repositoryName,
+        rating: $rating,
+        text: $text
+      }
+    ) {
+      createdAt,
+      id,
+      rating,
+      repository {
+        name
+      },
+      repositoryId,
+      text,
+      user {
+        username,
+      },
+      userId
+    }
+  }
+`
+
+
 export const GET_ONE_REPO = gql`
   query GET_ONE_REPO($repositoryId: ID!) {
     repository(id: $repositoryId) {
