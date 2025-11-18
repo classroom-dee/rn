@@ -45,6 +45,9 @@ const AppBar = () => {
             ? <AppBarTab style={styles.tabs} title="Sign in" to="/signin" />
             : <AppBarTab style={styles.tabs} title="Sign out" to="/signout" />
         }
+        {
+          !data?.me && <AppBarTab style={styles.tabs} title="Sign up" to="/signup" />
+        }
       </ScrollView>
     </View>
   )

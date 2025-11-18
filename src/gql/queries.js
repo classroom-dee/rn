@@ -28,6 +28,21 @@ export const CREATE_REVIEW = gql`
 `
 
 
+export const CREATE_USER = gql`
+  mutation CREATE_USER($username: String!, $password: String!) {
+    createUser (
+      user: {
+        username: $username,
+        password: $password
+      }
+    ) {
+      id,
+      username
+    }
+  }
+`
+
+
 export const GET_ONE_REPO = gql`
   query GET_ONE_REPO($repositoryId: ID!) {
     repository(id: $repositoryId) {

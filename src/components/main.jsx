@@ -5,6 +5,7 @@ import SingleRepository from './SingleRepository';
 import AppBar from './AppBar';
 import SignIn from './SignIn';
 import SignOut from './SignOut';
+import Signup from './Signup'
 import ThemedText from './ThemedText';
 import ReviewForm from './ReviewForm';
 
@@ -14,6 +15,7 @@ import { useState } from 'react';
 import useAuthStorage from '../hooks/useAuthStorage';
 import useSignIn from '../hooks/useSignIn';
 import useReview from '../hooks/useReview';
+import useSignUp from '../hooks/useSignup';
 
 
 const styles = StyleSheet.create({
@@ -26,7 +28,8 @@ const styles = StyleSheet.create({
 
 const Main = () => {
   const [user, setUser] = useState(null);
-  const [signIn, result] = useSignIn();
+  const [signIn, signInResult] = useSignIn();
+  const [signUp, signUpResult] = useSignUp();
   const [addReview, reviewResult] = useReview()
   const nav = useNavigate()
 
@@ -49,7 +52,18 @@ const Main = () => {
     } catch (e) {
       console.log(`on review submit error: ${e}`)
     }
+  }
 
+  const handleSignUp = async ({ username, password }) => {
+    try {
+      const res = await signUp({ username, password })
+      // console.log(data.createUser)
+      const user = await signIn({ username: res?.createUser?.username, password: password })
+      setUser({ ...await authStorage.getAccessToken(), accessToken: user.accessToken, expiresAt: user.expiresAt })
+      nav('/')
+    } catch (e) {
+      console.log(`Error on sign up: ${e}`);
+    }
   }
 
   return (
@@ -59,6 +73,7 @@ const Main = () => {
         <Route path="/" element={<RepositoryList />} />
         <Route path="/signin" element={<SignIn onSubmit={handleSubmit}/>} />
         <Route path="/signout" element={<SignOut />} />
+        <Route path="/signup" element={<Signup onSubmit={handleSignUp} />} />
         <Route path="/one/:id" element={<SingleRepository />} />
         <Route path="*" element={<Navigate to="/" replace />} />
         <Route path="/review" element={<ReviewForm onSubmit={handleReviewSubmit} />} />
