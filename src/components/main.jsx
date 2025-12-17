@@ -16,6 +16,7 @@ import useAuthStorage from '../hooks/useAuthStorage';
 import useSignIn from '../hooks/useSignIn';
 import useReview from '../hooks/useReview';
 import useSignUp from '../hooks/useSignup';
+import SorterAndFilter from './SorterAndFilter';
 
 
 const styles = StyleSheet.create({
@@ -30,7 +31,8 @@ const Main = () => {
   const [user, setUser] = useState(null);
   const [signIn, signInResult] = useSignIn();
   const [signUp, signUpResult] = useSignUp();
-  const [addReview, reviewResult] = useReview()
+  const [addReview, reviewResult] = useReview();
+  const [sortBy, setSortBy] = useState('date');
   const nav = useNavigate()
 
   const authStorage = useAuthStorage();
@@ -69,8 +71,9 @@ const Main = () => {
   return (
     <View style={styles.container}>
       <AppBar />
+      <SorterAndFilter sortBy={sortBy} setSortBy={setSortBy}/>
       <Routes>
-        <Route path="/" element={<RepositoryList />} />
+        <Route path="/" element={<RepositoryList sortBy={sortBy} />} />
         <Route path="/signin" element={<SignIn onSubmit={handleSubmit}/>} />
         <Route path="/signout" element={<SignOut />} />
         <Route path="/signup" element={<Signup onSubmit={handleSignUp} />} />

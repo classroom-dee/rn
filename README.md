@@ -2,6 +2,7 @@
 ### Part 01
 - Note: Upgraded to Expo SDK54 for Expo Go compat
 - Note: eslint config upgrade -> `npx @eslint/migrate-config .eslintrc.json`
+- Note: Use `nvm use 20` from the db app
 - [Ex 10.1](https://github.com/classroom-dee/rn/tree/10.1)
 - [Ex 10.2](https://github.com/classroom-dee/rn/tree/10.2)
 - [Ex 10.3](https://github.com/classroom-dee/rn/tree/10.3)
@@ -25,3 +26,4 @@
 - [Ex 10.20](https://github.com/classroom-dee/rn/tree/10.20)
 - [Ex 10.21](https://github.com/classroom-dee/rn/tree/10.21)
 - [Ex 10.22](https://github.com/classroom-dee/rn/tree/10.22)
+- [Ex 10.23](https://github.com/classroom-dee/rn/tree/10.23)

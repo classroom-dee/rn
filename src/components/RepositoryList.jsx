@@ -13,10 +13,17 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const RepositoryList = () => {
+const RepositoryList = ({ sortBy }) => {
   // const { data } = useRepositories(); -> uses uri endpoint with the fetch API
+  const sortDict = {
+    'latest': { orderBy: 'CREATED_AT', orderDirection: 'DESC' },
+    'high rating': { orderBy: 'RATING_AVERAGE', orderDirection: 'DESC' },
+    'low rating': { orderBy: 'RATING_AVERAGE', orderDirection: 'ASC' }
+  }
+
   const { data, error, loading } = useQuery(GET_REPOS, {
     fetchPolicy: 'cache-and-network',
+    variables: sortDict[sortBy]
   });
 
   if (error) {
