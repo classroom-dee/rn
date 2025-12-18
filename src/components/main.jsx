@@ -16,6 +16,7 @@ import useAuthStorage from '../hooks/useAuthStorage';
 import useSignIn from '../hooks/useSignIn';
 import useReview from '../hooks/useReview';
 import useSignUp from '../hooks/useSignup';
+
 import SorterAndFilter from './SorterAndFilter';
 
 
@@ -32,10 +33,13 @@ const Main = () => {
   const [signIn, signInResult] = useSignIn();
   const [signUp, signUpResult] = useSignUp();
   const [addReview, reviewResult] = useReview();
-  const [sortBy, setSortBy] = useState('date');
+  const [sortBy, setSortBy] = useState('Latest');
+  const [keyword, setKeyword] = useState('');
   const nav = useNavigate()
 
   const authStorage = useAuthStorage();
+
+  const onKeywordChange = (debouncedText) => setKeyword(debouncedText)
 
   const handleSubmit = async ({ username, password }) => {
     try {
@@ -71,9 +75,9 @@ const Main = () => {
   return (
     <View style={styles.container}>
       <AppBar />
-      <SorterAndFilter sortBy={sortBy} setSortBy={setSortBy}/>
+      <SorterAndFilter sortBy={sortBy} setSortBy={setSortBy} onKeywordChange={onKeywordChange} />
       <Routes>
-        <Route path="/" element={<RepositoryList sortBy={sortBy} />} />
+        <Route path="/" element={<RepositoryList sortBy={sortBy} keyword={keyword} />} />
         <Route path="/signin" element={<SignIn onSubmit={handleSubmit}/>} />
         <Route path="/signout" element={<SignOut />} />
         <Route path="/signup" element={<Signup onSubmit={handleSignUp} />} />

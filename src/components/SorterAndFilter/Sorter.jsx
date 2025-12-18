@@ -6,11 +6,12 @@ import theme from "../../theme";
 const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.colors.textWhite,
+    padding: 12
   },
   button: {
-    padding: 6,
+    // padding: 6,
     backgroundColor: theme.colors.textWhite,
-    marginHorizontal: 6,
+    // marginHorizontal: 3,
   },
   buttonText: {
     fontSize: 16,
@@ -23,7 +24,6 @@ const Sorter = ({ sortBy, setSortBy }) => {
 
   return (
     <View style={styles.container}>
-      
       <Pressable style={styles.button} onPress={() => setOpen(true)}>
         <Text style={styles.buttonText}>Sort by: {sortBy}</Text>
       </Pressable>
@@ -37,9 +37,9 @@ const Sorter = ({ sortBy, setSortBy }) => {
           }}
           mode="dialog"
         >
-          <Picker.Item label="Latest" value="latest" />
-          <Picker.Item label="High rating" value="high rating" />
-          <Picker.Item label="Low rating" value="low rating" />
+          <Picker.Item label="Latest" value="Latest" />
+          <Picker.Item label="High rating" value="High rating" />
+          <Picker.Item label="Low rating" value="Low rating" />
         </Picker>
       )}
     </View>

@@ -101,8 +101,8 @@ export const ME = gql`
 `
 
 export const GET_REPOS = gql`
-  query GET_REPOS($orderBy: AllRepositoriesOrderBy, $orderDirection: OrderDirection) {
-    repositories(orderBy: $orderBy, orderDirection: $orderDirection) {
+  query GET_REPOS($orderBy: AllRepositoriesOrderBy, $orderDirection: OrderDirection, $searchKeyword: String) {
+    repositories(orderBy: $orderBy, orderDirection: $orderDirection, searchKeyword: $searchKeyword) {
       edges {
         node {
           id,
