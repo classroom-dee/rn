@@ -8,6 +8,8 @@ import SignOut from './SignOut';
 import Signup from './Signup'
 import ThemedText from './ThemedText';
 import ReviewForm from './ReviewForm';
+import SorterAndFilter from './SorterAndFilter';
+import MyReviews from './MyReviews';
 
 import { Route, Routes, Navigate, useNavigate } from 'react-router-native';
 import { useState } from 'react';
@@ -17,7 +19,6 @@ import useSignIn from '../hooks/useSignIn';
 import useReview from '../hooks/useReview';
 import useSignUp from '../hooks/useSignup';
 
-import SorterAndFilter from './SorterAndFilter';
 
 
 const styles = StyleSheet.create({
@@ -84,6 +85,7 @@ const Main = () => {
         <Route path="/one/:id" element={<SingleRepository />} />
         <Route path="*" element={<Navigate to="/" replace />} />
         <Route path="/review" element={<ReviewForm onSubmit={handleReviewSubmit} />} />
+        <Route path="/my-reviews" element={<MyReviews />} />
       </Routes>
       <View>
         <ThemedText style={{ color: 'white', paddingBottom: 5, paddingLeft: 30 }}>Running on {Platform.OS}</ThemedText>

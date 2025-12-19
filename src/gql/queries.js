@@ -92,10 +92,25 @@ export const AUTHENTICATE = gql`
 `
 
 export const ME = gql`
-  query ME {
+  query ME($includeReviews: Boolean = false) {
     me {
       id
       username
+      reviews @include(if: $includeReviews) {
+        edges {
+          node {
+            id
+            userId
+            text
+            user {
+              username
+            }
+            rating
+            createdAt
+            
+          }
+        }
+      }
     }
   }
 `

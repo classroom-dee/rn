@@ -41,6 +41,9 @@ const AppBar = () => {
           data?.me && <AppBarTab style={styles.tabs} title="Create a review" to="/review" />
         }
         {
+          data?.me && <AppBarTab style={styles.tabs} title="My reviews" to="/my-reviews"/>
+        }
+        {
           !data?.me
             ? <AppBarTab style={styles.tabs} title="Sign in" to="/signin" />
             : <AppBarTab style={styles.tabs} title="Sign out" to="/signout" />
