@@ -9,7 +9,7 @@ const ReviewItem = ({ review }) => {
     String(date.getDate()).padStart(2, "0") + "-" +
     months[date.getMonth()] + "-" +
     date.getFullYear();
-
+  
   return (
     <View style={{ flexDirection: 'row', gap: 5, ...theme.repoItemStyle.itemBackground }}>
       <View style={{ alignItems: 'center', justifyContent: 'center', width: 30, height: 30, borderRadius: 15, borderColor: 'blue', borderStyle: 'solid', borderWidth: 2 }}>

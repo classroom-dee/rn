@@ -1,6 +1,6 @@
 import { View, Text, FlatList, StyleSheet } from "react-native";
 
-import ReviewItem from "./ReviewItem";
+import MyReviewItem from "./MyReviewItem";
 
 import { useQuery } from "@apollo/client";
 import { ME } from "../gql/queries";
@@ -31,7 +31,7 @@ const MyReviews = () => {
     <FlatList 
       data={reviews}
       ItemSeparatorComponent={ItemSeparator}
-      renderItem={({ item }) => <ReviewItem review={item} />}
+      renderItem={({ item }) => <MyReviewItem review={item} />}
       keyExtractor={({ id }) => id}
     />
 

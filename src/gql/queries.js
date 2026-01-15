@@ -1,6 +1,13 @@
 import { gql } from "@apollo/client";
 
 
+export const DELETE_REVIEW = gql`
+  mutation DELETE_REVIEW($deleteReviewId: ID!) {
+    deleteReview(id: $deleteReviewId)
+  }
+`
+
+
 export const CREATE_REVIEW = gql`
   mutation CREATE_REVIEW($ownerName: String!, $repositoryName: String!, $rating: Int!, $text: String) {
     createReview (
@@ -107,7 +114,9 @@ export const ME = gql`
             }
             rating
             createdAt
-            
+            repository {
+              id 
+            }
           }
         }
       }

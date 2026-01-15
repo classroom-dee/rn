@@ -6,7 +6,8 @@ const theme = {
     textSecondary: '#586069',
     primary: '#0366d6',
     navBarBG: '#24292e',
-    textWhite: 'white'
+    textWhite: 'white',
+    warning: '#ff6b6b'
   },
   fontSizes: {
     body: 14,
