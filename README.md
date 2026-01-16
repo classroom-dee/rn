@@ -30,3 +30,4 @@
 - [Ex 10.24](https://github.com/classroom-dee/rn/tree/10.24)
 - [Ex 10.25](https://github.com/classroom-dee/rn/tree/10.25)
 - [Ex 10.26](https://github.com/classroom-dee/rn/tree/10.26)
+- [Ex 10.27](https://github.com/classroom-dee/rn/tree/10.27)

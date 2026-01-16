@@ -1,27 +1,33 @@
-// NOT USED IF USING APOLLO CLIENT
-import { useState, useEffect } from 'react';
+import { useQuery } from '@apollo/client';
+import { GET_REPOS } from '../gql/queries';
 
-const useRepositories = () => {
-  const [repositories, setRepositories] = useState();
-  const [loading, setLoading] = useState(false);
+const useRepositories = (variables) => {
 
-  const fetchRepositories = async () => {
-    setLoading(true);
+  const { data, loading, fetchMore, ...result } = useQuery(GET_REPOS, {
+    variables,
+  })
 
-    // Replace the IP address part with your own IP address!
-    const response = await fetch('http://192.168.0.100:5000/api/repositories');
-    const json = await response.json();
+  const handleFetchMore = () => {
+    const canFetchMore = !loading && data?.repositories.pageInfo.hasNextPage;
 
-    setLoading(false);
-    setRepositories(json);
+    if (!canFetchMore) {
+      return;
+    }
+
+    fetchMore({
+      variables: {
+        ...variables,
+        after: data.repositories.pageInfo.endCursor,
+      },
+    });
   };
 
-  useEffect(() => {
-    fetchRepositories();
-
-  }, []);
-
-  return { repositories, loading, refetch: fetchRepositories };
+  return {
+    repositories: data?.repositories,
+    fetchMore: handleFetchMore,
+    loading,
+    ...result,
+  };
 };
 
 export default useRepositories;

@@ -1,8 +1,6 @@
 import { FlatList, View, Text, StyleSheet } from 'react-native';
 import RepositoryItem from './RepositoryItem';
-// import useRepositories from '../hooks/useRepositories';
-import { useQuery } from '@apollo/client';
-import { GET_REPOS } from '../gql/queries';
+import useRepositories from '../hooks/useRepositories';
 
 
 const styles = StyleSheet.create({
@@ -21,10 +19,20 @@ const RepositoryList = ({ sortBy, keyword }) => {
     'Low rating': { orderBy: 'RATING_AVERAGE', orderDirection: 'ASC', searchKeyword: keyword }
   }
 
-  const { data, error, loading } = useQuery(GET_REPOS, {
-    fetchPolicy: 'cache-and-network',
-    variables: sortAndFilter[sortBy]
-  });
+  const { repositories, fetchMore, loading, error } = useRepositories({
+    first: 6,
+    after: "",
+    ...sortAndFilter[sortBy]
+  })
+
+  const onEndReach = () => {
+    fetchMore();
+  };
+
+  // const { data, error, loading } = useQuery(GET_REPOS, {
+  //   fetchPolicy: 'cache-and-network',
+  //   variables: sortAndFilter[sortBy]
+  // });
 
   if (error) {
     return (
@@ -38,9 +46,8 @@ const RepositoryList = ({ sortBy, keyword }) => {
     )
   }
 
-  // Get the nodes from the edges array
-  const repositoryNodes = data
-    ? data.repositories.edges.map(edge => edge.node)
+  const repositoryNodes = repositories
+    ? repositories.edges.map(edge => edge.node)
     : [];
 
   return (
@@ -49,6 +56,8 @@ const RepositoryList = ({ sortBy, keyword }) => {
       ItemSeparatorComponent={ItemSeparator}
       renderItem={({ item }) => <RepositoryItem item={item} />}
       keyExtractor={(item, index) => index.toString()}
+      onEndReached={onEndReach}
+      onEndReachedThreshold={0.5}
     />
   );
 };

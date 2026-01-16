@@ -6,8 +6,7 @@ import ButtonsArea from "./ButtonsArea"
 import ReviewItem from "../ReviewItem"
 
 import { useParams } from "react-router-native"
-import { useQuery } from "@apollo/client"
-import { GET_ONE_REPO } from "../../gql/queries"
+import useReviewQuery from "../../hooks/useReviewQuery"
 
 import theme from "../../theme"
 
@@ -22,33 +21,39 @@ const ItemSeparator = () => <View style={{ backgroundColor: '#F5F5F5', ...styles
 const RepositoryItem = () => {
 
   const { id } = useParams(); // reads :id from router
-  const { data, error, loading } = useQuery(
-    GET_ONE_REPO, 
-    { variables: { repositoryId: id }, fetchPolicy: 'cache-and-network'},
-  );
+  const { repository, fetchMore, loading, error } = useReviewQuery({
+    first: 4,
+    after: "",
+    repositoryId: id
+  })
+
+  const onEndReach = () => {
+    console.log("end reached")
+    fetchMore();
+  };
 
   if (error) return <View><Text>Error: {error.message}</Text></View>
   if (loading) return <View><Text>Loading...</Text></View>
 
-  const item = data.repository
-  const reviews = item.reviews.edges.map(edge => edge.node)
+  const reviews = repository.reviews.edges.map(edge => edge.node)
 
   return ( 
-    <View testID="repositoryItem" style={theme.repoItemStyle.repoDetailStyle}>
-      <DescriptionArea item={item}/>
+    <View testID="repositoryItem" style={{ flex: 1, backgroundColor: theme.repoItemStyle.repoDetailStyle.backgroundColor, padding: theme.repoItemStyle.repoDetailStyle.padding }}>
+      <DescriptionArea item={repository}/>
       <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 10 }}>
-        <StatisticsText name="Stars" value={item.stargazersCount}/>
-        <StatisticsText name="Forks" value={item.forksCount}/>
-        <StatisticsText name="Reviews" value={item.reviewCount}/>
-        <StatisticsText name="Rating" value={item.ratingAverage}/>
+        <StatisticsText name="Stars" value={repository.stargazersCount}/>
+        <StatisticsText name="Forks" value={repository.forksCount}/>
+        <StatisticsText name="Reviews" value={repository.reviewCount}/>
+        <StatisticsText name="Rating" value={repository.ratingAverage}/>
       </View>
-      <ButtonsArea url={item.url} />
+      <ButtonsArea url={repository.url} />
       <FlatList 
         data={reviews}
         ItemSeparatorComponent={ItemSeparator}
         renderItem={({ item }) => <ReviewItem review={item} />}
         keyExtractor={({ id }) => id}
-        // No need for list header comp
+        onEndReached={onEndReach}
+        onEndReachedThreshold={0.5}
       />
     </View>
   )
